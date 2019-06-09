@@ -21,7 +21,9 @@ public class TabelaHash {
         System.out.println("Digite o tamanho da tabela: ");
         Scanner in = new Scanner(System.in); 
         int size = in.nextInt();        
-        tabela = new NodeTabela[size] ;         
+        tabela = new NodeTabela[size] ;    
+        hash = size;
+        
         for (int i = 0;i<tabela.length;i++){
         tabela[i] = new NodeTabela();     
         tabela[i].lista = new ListaEncadeada();
@@ -40,22 +42,8 @@ public class TabelaHash {
     public void insere(int info){
         if (tabela[hash(info)].informacao != -1){
             colisao++;   
-            Node novaNode = new Node();
-            novaNode.informacao = info;
-            Node temp = tabela[hash(info)].lista.lista;
-            
-            if (temp == null){              
-                novaNode.proximo = tabela[hash(info)].lista.lista;        
-                tabela[hash(info)].lista.lista = novaNode; 
-            }
-            else{                
-                while(temp.proximo != null && info > temp.proximo.informacao){ 
-                    temp = temp.proximo;            
-                    }                  
-                temp.proximo = novaNode;                   
-                }
-            }
-        
+            tabela[hash(info)].lista.insereOrdenado(info); 
+        }        
         else tabela[hash(info)].informacao = info;       
     }
     
@@ -73,7 +61,7 @@ public class TabelaHash {
             temp = temp.proximo;
                     }        
                 }
-            }
+        }
         }
     
     public boolean busca(int key){

@@ -18,16 +18,14 @@ public class main {
      */
     public static void main(String[] args) {
        
-        TabelaHash t = new TabelaHash();                 
-        t.hash = 100;
-       
-        t.insere(5);
+        TabelaHash t = new TabelaHash();                
+
         t.fill();        
         
         t.imprime();       
         
         while (true){
-            System.out.println("\nEntre com a key: ");
+            System.out.println("\n\nEntre com a key para busca: ");
             Scanner in = new Scanner(System.in);
             int key = in.nextInt(); 
                 if(key == -1){

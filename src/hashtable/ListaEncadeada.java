@@ -16,5 +16,31 @@ public class ListaEncadeada {
     public ListaEncadeada(){
         lista = null;     
     }       
+    
+    public void inserePrimeiro(int info){ 
+        Node novaNode = new Node();
+        novaNode.informacao = info;
+        novaNode.proximo = lista;
+        lista = novaNode; 
+    }    
    
+    public void insereOrdenado(int info){ 
+        Node novaNode = new Node();
+        novaNode.informacao = info;
+        
+        if (lista == null || lista.informacao >= info)  
+        { 
+            novaNode.proximo = lista;
+            lista = novaNode;            
+        } 
+        else { 
+            Node temp = lista;
+            while (temp.proximo != null && temp.proximo.informacao < info) { 
+                temp = temp.proximo;
+            } 
+            novaNode.proximo = temp.proximo;
+            temp.proximo = novaNode;
+        } 
+    } 
+    
 }
